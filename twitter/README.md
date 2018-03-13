@@ -1,4 +1,4 @@
-Progect like a twitter consist of 4 microservices: 
+Project is like a twitter. Consist of 4 microservices: 
 1. Post
 2. Comment
 3. Like
