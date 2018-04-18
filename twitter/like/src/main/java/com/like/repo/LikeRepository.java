@@ -7,7 +7,10 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface LikeRepository extends CrudRepository<Like, Long> {
-    public Like findById(long id);
-    public List<Like> findByUserId(long userId);
-    public List<Like> findAll(Pageable pageable);
+    List<Like> findByUserId(long userId);
+    List<Like> findAll(Pageable pageable);
+    List<Like> findAll();
+    List<Like> findAllByPostId(long id);
+    List<Like> findAllByCommentId(long id);
+    List<Like> findByPostIdAndUserId(long postId, long userId);
 }

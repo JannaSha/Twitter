@@ -1,6 +1,7 @@
 package com.like.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -8,7 +9,7 @@ import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "like")
+@Table(name = "like.like")
 @JsonFormat
 public class Like {
     @Id
@@ -18,7 +19,7 @@ public class Like {
 
     @Column(name = "lk_usr_id")
     @NotNull
-    private Integer userId;
+    private long userId;
 
     @JsonFormat(pattern = "yyyy-MM-dd/HH:mm:ss")
     @Column(name = "lk_creation_date")
@@ -27,17 +28,19 @@ public class Like {
 
     @Column(name = "lk_pst_id")
     @Min(0)
-    private Integer postId;
+    @Nullable
+    private long postId;
 
     @Column(name = "lk_cmt_id")
     @Min(0)
-    private Integer commentId;
+    @Nullable
+    private long commentId;
 
     public long getId() {
         return id;
     }
 
-    public Integer getUserId() {
+    public long getUserId() {
         return userId;
     }
 
@@ -45,11 +48,11 @@ public class Like {
         return creationDate;
     }
 
-    public Integer getPostId() {
+    public long getPostId() {
         return postId;
     }
 
-    public Integer getCommentId() {
+    public long getCommentId() {
         return commentId;
     }
 
@@ -57,7 +60,7 @@ public class Like {
         this.id = id;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(long userId) {
         this.userId = userId;
     }
 
@@ -65,11 +68,11 @@ public class Like {
         this.creationDate = creationDate;
     }
 
-    public void setPostId(Integer postId) {
+    public void setPostId(long postId) {
         this.postId = postId;
     }
 
-    public void setCommentId(Integer commentId) {
+    public void setCommentId(long commentId) {
         this.commentId = commentId;
     }
 }

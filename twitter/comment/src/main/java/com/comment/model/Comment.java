@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "comment")
+@Table(name = "comment.comment")
 @JsonFormat
 public class Comment {
     @Id
@@ -20,12 +20,12 @@ public class Comment {
     @Column(name = "cmt_usr_id")
     @NotNull
     @Min(0)
-    private Integer userId;
+    private long userId;
 
     @Column(name = "cmt_pst_id")
     @NotNull
     @Min(0)
-    private Integer postId;
+    private long postId;
 
     @Column(name = "cmt_text")
     @NotNull
@@ -37,15 +37,36 @@ public class Comment {
     @NotNull
     private Timestamp creationDate;
 
+    public Comment() {}
+
+    public Comment(@NotNull @Min(0) long userId,
+                   @NotNull @Min(0) long postId,
+                   @NotNull @Length(max = 3000) String text,
+                   @NotNull Timestamp creationDate) {
+        this.userId = userId;
+        this.postId = postId;
+        this.text = text;
+        this.creationDate = creationDate;
+    }
+
+    public Comment(Comment obj) {
+        this.id = obj.getId();
+        this.creationDate = obj.creationDate;
+        this.postId = obj.postId;
+        this.text = obj.text;
+        this.userId = obj.userId;
+    }
+
+
     public long getId() {
         return id;
     }
 
-    public Integer getUserId() {
+    public long getUserId() {
         return userId;
     }
 
-    public Integer getPostId() {
+    public long getPostId() {
         return postId;
     }
 
@@ -61,11 +82,11 @@ public class Comment {
         this.id = id;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(long userId) {
         this.userId = userId;
     }
 
-    public void setPostId(Integer postId) {
+    public void setPostId(long postId) {
         this.postId = postId;
     }
 

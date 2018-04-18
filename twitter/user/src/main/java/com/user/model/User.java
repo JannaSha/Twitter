@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "user")
+@Table(name = "user.user")
 @JsonFormat
 public class User {
     @Id

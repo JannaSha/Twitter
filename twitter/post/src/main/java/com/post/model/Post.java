@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "post")
+@Table(name = "post.post")
 @JsonFormat
 public class Post {
     @Id
@@ -20,7 +20,7 @@ public class Post {
     @Column(name = "pst_usr_id")
     @NotNull
     @Min(0)
-    private Integer userId;
+    private long userId;
 
     @Column(name = "pst_text")
     @Length(max=3000)
@@ -32,11 +32,23 @@ public class Post {
     @NotNull
     private Timestamp creationDate;
 
+    public Post() {}
+
+    public Post(@Min(0) long id, @NotNull @Min(0) long userId,
+                @Length(max = 3000) @NotNull String text,
+                @NotNull Timestamp creationDate) {
+        this.id = id;
+        this.userId = userId;
+        this.text = text;
+        this.creationDate = creationDate;
+    }
+
+
     public long getId() {
         return id;
     }
 
-    public Integer getUserId() {
+    public long getUserId() {
         return userId;
     }
 
@@ -52,7 +64,7 @@ public class Post {
         this.id = id;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(long userId) {
         this.userId = userId;
     }
 
